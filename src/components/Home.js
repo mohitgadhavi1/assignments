@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Container, Box, Typography, Grid } from "@mui/material";
+import { Container, Box, Typography, Grid, Button } from "@mui/material";
 const theme = createTheme();
 const movieData = [
   {
@@ -14,10 +14,11 @@ const movieData = [
 ];
 
 function Home() {
-  const [data, setData] = useState("");
+  const [showdata, setShowdata] = useState(false);
 
   useEffect(() => {
-    const url = "https://hoblist.com/api/movieList?category:movies";
+    const url =
+      "https://hoblist.com/api/movieList?category=movies&language=kannada&genre=all&sort=voting";
     const fetchData = async () => {
       try {
         const response = await fetch(url, {
@@ -39,6 +40,7 @@ function Home() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
+        <Button onClick={() => setShowdata(true)}>Menu</Button>
         <Box
           sx={{
             marginTop: 4,
@@ -58,6 +60,15 @@ function Home() {
         >
           {" "}
           <Grid container spacing={2}>
+            {showdata && (
+              <Grid item>
+                <Typography component="p" variant="" align="center">
+                  Company: Geeksynergy Technologies Pvt Ltd Address:
+                  Sanjayanagar, Bengaluru-56 Phone: XXXXXXXXX09 Email:
+                  XXXXXX@gmail.com
+                </Typography>
+              </Grid>
+            )}
             <Grid item xs={12}>
               <Typography component="h1" variant="h5" align="center">
                 Movie Reviews

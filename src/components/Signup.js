@@ -1,11 +1,20 @@
 import React, { useState } from "react";
+import "./Signup.css";
 
 function Signup({ setLogin }) {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    password: "",
+    number: "",
+    proffesion: "web",
   });
+  const options = [
+    { label: "Web Developer", value: "web" },
+    { label: "Mobile Developer", value: "mobile" },
+    { label: "Cloud Developer", value: "cloud" },
+  ];
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
 
@@ -31,10 +40,45 @@ function Signup({ setLogin }) {
       email: event.target.value,
     }));
   };
+  const handlePasswordInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      password: event.target.value,
+    }));
+  };
+  const handleNumberInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      number: event.target.value,
+    }));
+  };
+  const handleProffesionInputChange = (event) => {
+    event.persist();
+    setValues((values) => ({
+      ...values,
+      proffesion: event.target.value,
+    }));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (values.firstName && values.lastName && values.email) {
+    if (
+      values.firstName &&
+      values.lastName &&
+      values.email &&
+      values.number &&
+      values.password &&
+      values.proffesion
+    ) {
       setValid(true);
+      setLogin(true);
+      localStorage.setItem("Email", values.email);
+      localStorage.setItem("Password", values.password);
+      localStorage.setItem("FirstName", values.firstName);
+      localStorage.setItem("LastName", values.lastName);
+      localStorage.setItem("MobileNumber", values.number);
+      localStorage.setItem("Proffesion", values.proffesion);
     }
     setSubmitted(true);
   };
@@ -78,17 +122,47 @@ function Signup({ setLogin }) {
         {submitted && !values.email && (
           <span id="email-error">Please enter an email address</span>
         )}
-        <button
+        <input
+          id="password"
           className="form-field"
-          type="submit"
-         
-        >
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={values.password}
+          onChange={handlePasswordInputChange}
+        />
+        {submitted && !values.password && (
+          <span id="password-error">Please enter valid password</span>
+        )}
+        <input
+          id="number"
+          className="form-field"
+          type="number"
+          placeholder="Mobile Number"
+          name="number"
+          value={values.number}
+          onChange={handleNumberInputChange}
+        />
+        {submitted && !values.number && (
+          <span id="number-error">Please enter your mobile number</span>
+        )}
+        <label>
+          Your Proffesion?
+          <select
+            value={values.proffesion}
+            onChange={handleProffesionInputChange}
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button className="form-field" type="submit">
           Register
         </button>
       </form>
-      {valid && (
-        <div class="success-message">Success! Thank you for registering</div>
-      )}
     </div>
   );
 }
