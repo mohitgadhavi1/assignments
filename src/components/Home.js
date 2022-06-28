@@ -40,7 +40,7 @@ function Home() {
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        <Button onClick={() => setShowdata(true)}>Menu</Button>
+        <Button onClick={() => setShowdata(!showdata)}>Menu</Button>
         <Box
           sx={{
             marginTop: 4,
