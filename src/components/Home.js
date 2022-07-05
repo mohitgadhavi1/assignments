@@ -46,7 +46,7 @@ function Home(props) {
       </div>
 
       {showdata && (
-        <div>
+        <div className="companyInfo">
           <Typography component="p" variant="" align="left">
             Company: Geeksynergy Technologies Pvt Ltd
           </Typography>
@@ -65,13 +65,13 @@ function Home(props) {
       <Typography component="h1" variant="h5" align="center">
         Movie Reviews
       </Typography>
-      <div>
+      <div className="fetchData">
         {movieData.map((item) => {
           return (
             <div key={item.id}>
               <Typography component="p" variant="" align="left">
                 {" "}
-                {item.id}. Name: ${item.name}
+                {item.id}. Name: {item.name}
               </Typography>
               <Typography component="p" variant="" align="left">
                 {" "}

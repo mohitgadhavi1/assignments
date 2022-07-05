@@ -32,7 +32,7 @@ function Signin({ setLogin }) {
           value={email}
           onChange={handleEmailInputChange}
         />
-        <p>
+        <p style={{ color: "red" }}>
           {localStorage.getItem("Email") === email
             ? ""
             : "Please Enter Correct E-mail "}
@@ -46,7 +46,7 @@ function Signin({ setLogin }) {
           value={password}
           onChange={handlePasswordInputChange}
         />
-        <p>
+        <p style={{ color: "red" }}>
           {localStorage.getItem("Password") === password
             ? ""
             : "Please Enter Correct Password"}
