@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Container, Box, Typography, Grid, Button } from "@mui/material";
-const theme = createTheme();
+import { Typography, Button } from "@mui/material";
+import "./Home.css";
+
 const movieData = [
   {
     id: 1,
@@ -13,7 +14,7 @@ const movieData = [
   },
 ];
 
-function Home() {
+function Home(props) {
   const [showdata, setShowdata] = useState(false);
 
   useEffect(() => {
@@ -38,61 +39,57 @@ function Home() {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+    <div className="movieComp">
+      <div className="header">
         <Button onClick={() => setShowdata(!showdata)}>Menu</Button>
-        <Box
-          sx={{
-            marginTop: 4,
-            marginBottom: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "max-content",
-            p: 2,
-            border: "1px dashed grey",
-            // backgroundColor: "primary.dark",
-            // "&:hover": {
-            //   backgroundColor: "primary.main",
-            //   opacity: [0.9, 0.8, 0.7],
-            // },
-          }}
-        >
-          {" "}
-          <Grid container spacing={2}>
-            {showdata && (
-              <Grid item>
-                <Typography component="p" variant="" align="center">
-                  Company: Geeksynergy Technologies Pvt Ltd Address:
-                  Sanjayanagar, Bengaluru-56 Phone: XXXXXXXXX09 Email:
-                  XXXXXX@gmail.com
-                </Typography>
-              </Grid>
-            )}
-            <Grid item xs={12}>
-              <Typography component="h1" variant="h5" align="center">
-                Movie Reviews
+        <Button onClick={() => props.setLogin(false)}>Logout</Button>
+      </div>
+
+      {showdata && (
+        <div>
+          <Typography component="p" variant="" align="left">
+            Company: Geeksynergy Technologies Pvt Ltd
+          </Typography>
+          <Typography component="p" variant="" align="left">
+            Address: Sanjayanagar,
+          </Typography>
+          <Typography component="p" variant="" align="left">
+            Bengaluru-56 Phone: XXXXXXXXX09
+          </Typography>
+          <Typography component="p" variant="" align="left">
+            Email: XXXXXX@gmail.com
+          </Typography>
+        </div>
+      )}
+
+      <Typography component="h1" variant="h5" align="center">
+        Movie Reviews
+      </Typography>
+      <div>
+        {movieData.map((item) => {
+          return (
+            <div key={item.id}>
+              <Typography component="p" variant="" align="left">
+                {" "}
+                {item.id}. Name: ${item.name}
               </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Grid item xs={12} sm={6}>
-                {movieData.map((item) => {
-                  return (
-                    <Typography key={item.id} component="h1" variant="h6">
-                      {` ${item.id}.` +
-                        `Name: ${item.name}` +
-                        ` Category: ${item.category}` +
-                        ` Genre: ${item.genre}` +
-                        ` Vote: ${item.vote}`}
-                    </Typography>
-                  );
-                })}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-    </ThemeProvider>
+              <Typography component="p" variant="" align="left">
+                {" "}
+                Category: {item.category}{" "}
+              </Typography>
+              <Typography component="p" variant="" align="left">
+                {" "}
+                Genre: {item.genre}
+              </Typography>
+              <Typography component="p" variant="" align="left">
+                {" "}
+                Vote: {item.vote}{" "}
+              </Typography>{" "}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

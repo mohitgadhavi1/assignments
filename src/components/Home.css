@@ -1,0 +1,13 @@
+.movieComp{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+    width: 50vw;
+    height: 50vh;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}

@@ -21,7 +21,7 @@ function App() {
         ) : (
           <Signin setLogin={setLogin} />
         ))}
-      {login && <Home />}
+      {login && <Home setLogin={setLogin}/>}
     </div>
   );
 }

@@ -32,9 +32,11 @@ function Signin({ setLogin }) {
           value={email}
           onChange={handleEmailInputChange}
         />
-        {/* {submitted && !email && (
-          <span id="email-error">Please enter an email address</span>
-        )} */}
+        <p>
+          {localStorage.getItem("Email") === email
+            ? ""
+            : "Please Enter Correct E-mail "}
+        </p>
         <input
           id="password"
           className="form-field"
@@ -44,9 +46,11 @@ function Signin({ setLogin }) {
           value={password}
           onChange={handlePasswordInputChange}
         />
-        {/* {submitted && !password && (
-          <span id="password-error">Please enter valid password</span>
-        )} */}
+        <p>
+          {localStorage.getItem("Password") === password
+            ? ""
+            : "Please Enter Correct Password"}
+        </p>
         <button className="form-field" type="submit">
           Signin
         </button>
