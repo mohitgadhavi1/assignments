@@ -19,7 +19,7 @@ function Home(props) {
 
   useEffect(() => {
     const url =
-      "https://hoblist.com/api/movieList?category=movies&language=kannada&genre=all&sort=voting";
+      "https://hoblist.com/api/movieList?category='movies'&language='kannada'&genre='all'&sort='voting'";
     const fetchData = async () => {
       try {
         const response = await fetch(url, {

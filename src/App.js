@@ -6,11 +6,11 @@ import Home from "./components/Home";
 
 function App() {
   const [login, setLogin] = useState(false);
-  console.log(
-    localStorage.getItem("Email") === null &&
-      localStorage.getItem("Password") === null
-  );
-  console.log(localStorage.getItem("Email"));
+  // console.log(
+  //   localStorage.getItem("Email") === null &&
+  //     localStorage.getItem("Password") === null
+  // );
+  // console.log(localStorage.getItem("Email"));
 
   return (
     <div className="App">
@@ -21,7 +21,7 @@ function App() {
         ) : (
           <Signin setLogin={setLogin} />
         ))}
-      {login && <Home setLogin={setLogin}/>}
+      {login && <Home setLogin={setLogin} />}
     </div>
   );
 }
